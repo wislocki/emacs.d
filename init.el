@@ -52,7 +52,7 @@
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
-  :init (setq markdown-command "markdown"))
+  :init (setq markdown-command "multimarkdown"))
 
 (use-package rainbow-delimiters
   :ensure t
