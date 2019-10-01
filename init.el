@@ -10,7 +10,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote (tango-dark)))
  '(inhibit-startup-screen t)
  '(package-archives
    (quote
@@ -25,6 +24,11 @@
  '(user-mail-address "daniel.wislocki@gmail.com"))
 
 (package-initialize)
+
+(use-package apropospriate-theme
+  :ensure t
+  :config
+  (load-theme 'apropospriate-dark t))
 
 (use-package avy
   :ensure t
