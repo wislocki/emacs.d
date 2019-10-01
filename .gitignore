@@ -12,5 +12,6 @@
 
 # Others
 auto-save-list
-elpa
-melpa
+!elpa
+elpa/*
+!elpa/use-package-2.4
