@@ -26,6 +26,12 @@
 
 (package-initialize)
 
+;;; Libraries
+
+(use-package thingatpt)
+
+;;; Packages
+
 (use-package apropospriate-theme
   :ensure t
   :config
@@ -63,17 +69,12 @@
   :ensure t
   :hook (prog-mode . rainbow-delimiters-mode))
 
-(require 'zetteldeft)
+(use-package zetteldeft)
+
+;;; Key bindings
 
 (global-set-key [f1] 'Info-goto-emacs-command-node)
 
 (global-set-key [f6] 'find-file-other-frame)
 
 (global-set-key [f9] 'zd-new-file)
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
