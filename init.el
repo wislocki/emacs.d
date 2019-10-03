@@ -1,5 +1,7 @@
 ;;; init.el -- The latest iteration of DW's .emacs / init.el file.
 
+(global-unset-key (kbd "C-z"))
+
 (add-to-list 'load-path (concat user-emacs-directory
   (convert-standard-filename "lisp")))
 
@@ -45,7 +47,8 @@
 
 (use-package deft
   :ensure t
-  :bind ("C-, C-," . deft)
+  :bind (("C-z d" . deft)
+	 ("C-z r" . deft-refresh))
   :commands (deft)
   :init (setq deft-directory "~/Dropbox/notes"
 	      deft-extensions '("org" "md" "txt" "tex" "latex")))
@@ -69,7 +72,25 @@
   :ensure t
   :hook (prog-mode . rainbow-delimiters-mode))
 
-(use-package zetteldeft)
+(use-package zetteldeft
+  :bind (("C-z C-s" . zd-deft-new-search)
+	 ("C-z s" . zd-deft-search-at-point)
+	 ("C-z C-f" . zd-find-file)
+	 ("C-z C-t" . zd-tag-buffer)
+	 ("C-z t" . zd-avy-tag-search)
+	 ("C-z l" . zd-avy-link-search)
+	 ("C-z C-w" . zd-file-rename)
+	 ("C-z <return>" . zd-follow-link)))
+
+;;   "dc" '(zd-search-current-id :wk "search current id")
+;;   "dF" '(zd-avy-file-search-ace-window :wk "avy file other window")
+;;   "dl" '(zd-avy-link-search :wk "avy link search")
+;;   "di" '(zd-find-file-id-insert :wk "insert id")
+;;   "dI" '(zd-find-file-full-title-insert :wk "insert full title")
+;;   "dn" '(zd-new-file :wk "new file")
+;;   "dN" '(zd-new-file-and-link :wk "new file & link")
+
+
 
 ;;; Key bindings
 
