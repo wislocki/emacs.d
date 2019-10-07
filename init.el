@@ -72,6 +72,21 @@
   :ensure t
   :hook (prog-mode . rainbow-delimiters-mode))
 
+
+(defun efls/deft-open-other ()
+ (interactive)
+ (deft-open-file-other-window t))
+
+(defun efls/deft-open-preview ()
+ (interactive)
+ (deft-open-file-other-window))
+
+(with-eval-after-load 'deft
+  (define-key deft-mode-map
+    (kbd "<tab>") 'efls/deft-open-preview)
+  (define-key deft-mode-map
+    (kbd "<C-return>") 'efls/deft-open-other))
+
 (use-package zetteldeft
   :bind (("C-z C-s" . zd-deft-new-search)
 	 ("C-z s" . zd-deft-search-at-point)
@@ -80,17 +95,14 @@
 	 ("C-z t" . zd-avy-tag-search)
 	 ("C-z l" . zd-avy-link-search)
 	 ("C-z C-w" . zd-file-rename)
-	 ("C-z <return>" . zd-follow-link)))
+	 ("C-z <return>" . zd-follow-link)
+	 ("C-z C-n" . zd-new-file-and-link)
+	 ("C-z n" . zd-new-file)
+	 ("C-z C-i" . zd-find-file-full-title-insert)
+	 ("C-z i" . zd-find-file-id-insert)
+	 ("C-z g" . zd-search-current-id)))
 
-;;   "dc" '(zd-search-current-id :wk "search current id")
 ;;   "dF" '(zd-avy-file-search-ace-window :wk "avy file other window")
-;;   "dl" '(zd-avy-link-search :wk "avy link search")
-;;   "di" '(zd-find-file-id-insert :wk "insert id")
-;;   "dI" '(zd-find-file-full-title-insert :wk "insert full title")
-;;   "dn" '(zd-new-file :wk "new file")
-;;   "dN" '(zd-new-file-and-link :wk "new file & link")
-
-
 
 ;;; Key bindings
 
