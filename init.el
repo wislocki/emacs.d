@@ -20,7 +20,7 @@
      ("melpa-stable" . "http://stable.melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (dockerfile-mode rainbow-mode rainbow-delimiters markdown-mode magit avy deft use-package)))
+    (ivy counsel swiper dockerfile-mode rainbow-mode rainbow-delimiters markdown-mode magit avy deft use-package)))
  '(tool-bar-mode nil)
  '(user-full-name "Daniel Wislocki")
  '(user-initials "dmw")
@@ -72,6 +72,14 @@
   :ensure t
   :hook (prog-mode . rainbow-delimiters-mode))
 
+(use-package ivy
+  :ensure t)
+
+(use-package counsel
+  :ensure t)
+
+(use-package swiper
+  :ensure t)
 
 (defun efls/deft-open-other ()
  (interactive)
@@ -102,12 +110,19 @@
 	 ("C-z i" . zd-find-file-id-insert)
 	 ("C-z g" . zd-search-current-id)))
 
-;;   "dF" '(zd-avy-file-search-ace-window :wk "avy file other window")
-
 ;;; Key bindings
 
 (global-set-key [f1] 'Info-goto-emacs-command-node)
 
 (global-set-key [f6] 'find-file-other-frame)
 
-(global-set-key [f9] 'zd-new-file)
+(setq ivy-use-virtual-buffers t)
+(setq ivy-count-format "(%d/%d) ")
+
+(global-set-key (kbd "C-s") 'swiper-isearch)
+(global-set-key (kbd "C-r") 'swiper-isearch-backward)
+(global-set-key (kbd "C-x b") 'ivy-switch-buffer)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key (kbd "C-c k") 'counsel-ag)
+
