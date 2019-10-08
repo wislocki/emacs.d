@@ -20,7 +20,7 @@
      ("melpa-stable" . "http://stable.melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (dockerfile-mode rainbow-mode rainbow-delimiters markdown-mode magit avy deft use-package)))
+    (ace-window dockerfile-mode rainbow-mode rainbow-delimiters markdown-mode magit avy deft use-package)))
  '(tool-bar-mode nil)
  '(user-full-name "Daniel Wislocki")
  '(user-initials "dmw")
@@ -33,6 +33,10 @@
 (use-package thingatpt)
 
 ;;; Packages
+
+(use-package ace-window
+  :ensure t
+  :bind ("M-o" . ace-window))
 
 (use-package apropospriate-theme
   :ensure t
@@ -72,20 +76,19 @@
   :ensure t
   :hook (prog-mode . rainbow-delimiters-mode))
 
-
-(defun efls/deft-open-other ()
+(defun dmw/deft-open-other ()
  (interactive)
  (deft-open-file-other-window t))
 
-(defun efls/deft-open-preview ()
+(defun dmw/deft-open-preview ()
  (interactive)
  (deft-open-file-other-window))
 
 (with-eval-after-load 'deft
   (define-key deft-mode-map
-    (kbd "<tab>") 'efls/deft-open-preview)
+    (kbd "<tab>") 'dmw/deft-open-preview)
   (define-key deft-mode-map
-    (kbd "<C-return>") 'efls/deft-open-other))
+    (kbd "<C-return>") 'dmw/deft-open-other))
 
 (use-package zetteldeft
   :bind (("C-z C-s" . zd-deft-new-search)
