@@ -12,6 +12,7 @@
 
 # Others
 auto-save-list
+recentf
 !elpa
 elpa/*
 !elpa/use-package-2.4
