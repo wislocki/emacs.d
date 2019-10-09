@@ -20,7 +20,8 @@
      ("melpa-stable" . "http://stable.melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (ace-window ivy counsel swiper dockerfile-mode rainbow-mode rainbow-delimiters markdown-mode magit avy deft use-package)))
+    (ace-window ivy counsel swiper dockerfile-mode rainbow-mode
+     rainbow-delimiters markdown-mode magit avy deft use-package)))
  '(tool-bar-mode nil)
  '(user-full-name "Daniel Wislocki")
  '(user-initials "dmw")
@@ -49,6 +50,10 @@
   :config
   (avy-setup-default))
 
+(use-package counsel
+  :ensure t
+  :after ivy)
+
 (use-package deft
   :ensure t
   :bind (("C-z d" . deft)
@@ -57,9 +62,26 @@
   :init (setq deft-directory "~/Dropbox/notes"
 	      deft-extensions '("org" "md" "txt" "tex" "latex")))
 
+(defun dmw/deft-open-other ()
+ (interactive)
+ (deft-open-file-other-window t))
+
+(defun dmw/deft-open-preview ()
+ (interactive)
+ (deft-open-file-other-window))
+
+(with-eval-after-load 'deft
+  (define-key deft-mode-map
+    (kbd "<tab>") 'dmw/deft-open-preview)
+  (define-key deft-mode-map
+    (kbd "<C-return>") 'dmw/deft-open-other))
+
 (use-package dockerfile-mode
   :ensure t
   :mode "Dockerfile[a-zA-Z.-]*\\'")
+
+(use-package ivy
+  :ensure t)
 
 (use-package magit
   :ensure t)
@@ -76,28 +98,16 @@
   :ensure t
   :hook (prog-mode . rainbow-delimiters-mode))
 
-(use-package ivy
-  :ensure t)
-
-(use-package counsel
-  :ensure t)
-
 (use-package swiper
   :ensure t)
 
-(defun dmw/deft-open-other ()
- (interactive)
- (deft-open-file-other-window t))
-
-(defun dmw/deft-open-preview ()
- (interactive)
- (deft-open-file-other-window))
-
-(with-eval-after-load 'deft
-  (define-key deft-mode-map
-    (kbd "<tab>") 'dmw/deft-open-preview)
-  (define-key deft-mode-map
-    (kbd "<C-return>") 'dmw/deft-open-other))
+(use-package whitespace
+  :diminish (global-whitespace-mode
+             whitespace-mode
+             whitespace-newline-mode)
+  :init
+  (setq whitespace-style '(face trailing lines space-before-tab empty))
+  (global-whitespace-mode 1))
 
 (use-package zetteldeft
   :bind (("C-z C-s" . zd-deft-new-search)
@@ -129,4 +139,3 @@
 (global-set-key (kbd "C-x C-f") 'counsel-find-file)
 (global-set-key (kbd "M-x") 'counsel-M-x)
 (global-set-key (kbd "C-c k") 'counsel-ag)
-
