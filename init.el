@@ -17,11 +17,10 @@
  '(package-archives
    (quote
     (("gnu" . "http://elpa.gnu.org/packages/")
-     ("melpa-stable" . "http://stable.melpa.org/packages/"))))
+     ("melpa-stable" . "https://stable.melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (ace-window ivy counsel swiper dockerfile-mode rainbow-mode
-     rainbow-delimiters markdown-mode magit avy deft use-package)))
+    (company cider ace-window ivy counsel swiper dockerfile-mode rainbow-mode rainbow-delimiters markdown-mode magit avy deft use-package)))
  '(tool-bar-mode nil)
  '(user-full-name "Daniel Wislocki")
  '(user-initials "dmw")
@@ -49,6 +48,14 @@
   :bind* ("C-." . avy-goto-char-timer)
   :config
   (avy-setup-default))
+
+(use-package cider
+  :ensure t)
+
+(use-package company
+  :ensure t
+  :init
+  (global-company-mode 1))
 
 (use-package counsel
   :ensure t
@@ -139,3 +146,4 @@
 (global-set-key (kbd "C-x C-f") 'counsel-find-file)
 (global-set-key (kbd "M-x") 'counsel-M-x)
 (global-set-key (kbd "C-c k") 'counsel-ag)
+(global-set-key (kbd "TAB") #'company-indent-or-complete-common)
