@@ -113,7 +113,7 @@
              whitespace-mode
              whitespace-newline-mode)
   :init
-  (setq whitespace-style '(face trailing lines space-before-tab empty))
+  (setq whitespace-style '(face trailing space-before-tab empty))
   (global-whitespace-mode 1))
 
 (use-package zetteldeft
