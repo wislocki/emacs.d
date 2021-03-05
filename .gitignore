@@ -17,3 +17,4 @@ recentf
 elpa/*
 !elpa/use-package-2.4
 !elpa/bind-key-2.4
+tramp
