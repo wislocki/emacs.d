@@ -20,7 +20,7 @@
      ("melpa-stable" . "https://stable.melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (company cider ace-window ivy counsel swiper dockerfile-mode rainbow-mode rainbow-delimiters markdown-mode magit avy deft use-package)))
+    (yaml-mode company cider ace-window ivy counsel swiper dockerfile-mode rainbow-mode rainbow-delimiters markdown-mode magit avy deft use-package)))
  '(tool-bar-mode nil)
  '(user-full-name "Daniel Wislocki")
  '(user-initials "dmw")
@@ -116,6 +116,9 @@
   (setq whitespace-style '(face trailing space-before-tab empty))
   (global-whitespace-mode 1))
 
+(use-package yaml-mode
+  :ensure t)
+
 (use-package zetteldeft
   :bind (("C-z C-s" . zd-deft-new-search)
 	 ("C-z s" . zd-deft-search-at-point)
@@ -140,10 +143,16 @@
 (setq ivy-use-virtual-buffers t)
 (setq ivy-count-format "(%d/%d) ")
 
-(global-set-key (kbd "C-s") 'swiper-isearch)
-(global-set-key (kbd "C-r") 'swiper-isearch-backward)
+;; (global-set-key (kbd "C-s") 'swiper-isearch)
+;; (global-set-key (kbd "C-r") 'swiper-isearch-backward)
 (global-set-key (kbd "C-x b") 'ivy-switch-buffer)
 (global-set-key (kbd "C-x C-f") 'counsel-find-file)
 (global-set-key (kbd "M-x") 'counsel-M-x)
 (global-set-key (kbd "C-c k") 'counsel-ag)
 (global-set-key (kbd "TAB") #'company-indent-or-complete-common)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
