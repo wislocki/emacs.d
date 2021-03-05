@@ -20,7 +20,7 @@
      ("melpa-stable" . "https://stable.melpa.org/packages/"))))
  '(package-selected-packages
    (quote
-    (yaml-mode company cider ace-window ivy counsel swiper dockerfile-mode rainbow-mode rainbow-delimiters markdown-mode magit avy deft use-package)))
+    (apropospriate-theme yaml-mode company cider ace-window ivy counsel swiper dockerfile-mode rainbow-mode rainbow-delimiters markdown-mode magit avy deft use-package)))
  '(tool-bar-mode nil)
  '(user-full-name "Daniel Wislocki")
  '(user-initials "dmw")
@@ -119,20 +119,23 @@
 (use-package yaml-mode
   :ensure t)
 
+(require 'zetteldeft)
+
 (use-package zetteldeft
-  :bind (("C-z C-s" . zd-deft-new-search)
-	 ("C-z s" . zd-deft-search-at-point)
-	 ("C-z C-f" . zd-find-file)
-	 ("C-z C-t" . zd-tag-buffer)
-	 ("C-z t" . zd-avy-tag-search)
-	 ("C-z l" . zd-avy-link-search)
-	 ("C-z C-w" . zd-file-rename)
-	 ("C-z <return>" . zd-follow-link)
-	 ("C-z C-n" . zd-new-file-and-link)
-	 ("C-z n" . zd-new-file)
-	 ("C-z C-i" . zd-find-file-full-title-insert)
-	 ("C-z i" . zd-find-file-id-insert)
-	 ("C-z g" . zd-search-current-id)))
+  :after deft
+  :bind (("C-z C-s" . zetteldeft-deft-new-search)
+	 ("C-z s" . zetteldeft-deft-search-at-point)
+	 ("C-z C-f" . zetteldeft-find-file)
+	 ("C-z C-t" . zetteldeft-tag-buffer)
+	 ("C-z t" . zetteldeft-avy-tag-search)
+	 ("C-z l" . zetteldeft-avy-link-search)
+	 ("C-z C-w" . zetteldeft-file-rename)
+	 ("C-z <return>" . zetteldeft-follow-link)
+	 ("C-z C-n" . zetteldeft-new-file-and-link)
+	 ("C-z n" . zetteldeft-new-file)
+	 ("C-z C-i" . zetteldeft-find-file-full-title-insert)
+	 ("C-z i" . zetteldeft-find-file-id-insert)
+	 ("C-z g" . zetteldeft-search-current-id)))
 
 ;;; Key bindings
 
